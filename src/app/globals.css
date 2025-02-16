@@ -2,20 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 🎨 Theme Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-color: theme("colors.primary.50");
+  --text-color: theme("colors.primary.900");
+  --primary-color: theme("colors.primary.500");
+  --accent-color: theme("colors.accent.500");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --bg-color: theme("colors.primary.950");
+  --text-color: theme("colors.primary.100");
+  --primary-color: theme("colors.primary.300");
+  --accent-color: theme("colors.accent.300");
+}
+
+/* 🎭 Apply Theme Colors */
+body {
+  @apply bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300;
+  font-family: var(--font-playfair), serif;
+}
+
+/* 🎨 Buttons */
+.button {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-300;
+}
+
+.button-primary {
+  @apply bg-[var(--primary-color)] text-white hover:bg-primary-600 dark:hover:bg-primary-400;
+}
+
+.button-accent {
+  @apply bg-[var(--accent-color)] text-white hover:bg-accent-600 dark:hover:bg-accent-400;
+}
+
+/* 🌗 Dark Mode Toggle */
+.toggle-container {
+  @apply flex items-center justify-center p-2;
+}
+
+.toggle-switch {
+  @apply w-10 h-5 bg-gray-300 dark:bg-gray-700 rounded-full relative cursor-pointer transition-all;
+}
+
+.toggle-circle {
+  @apply w-4 h-4 bg-white dark:bg-gray-300 rounded-full absolute top-1 left-1 transition-all;
+}
+
+.dark .toggle-circle {
+  @apply translate-x-5;
+}
+
+/* 🔲 Background Geometric Animation */
+.animated-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -10; /* Puts it behind all content */
+}
+
+/* 🛑 Ensure Animated Hexagons Respect Theme Colors */
+.hexagon-pattern polygon {
+  stroke: var(--primary-color);
+  transition: stroke 0.3s ease-in-out;
+}
+
+/* 🌀 Animated Background Ripple Effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.8;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.animated-hexagon {
+  animation: ripple 2.5s infinite ease-in-out;
+}
+
+/* 📱 Responsive Typography */
+h1 {
+  @apply text-4xl md:text-5xl font-bold;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl font-semibold;
+}
+
+p {
+  @apply text-lg md:text-xl;
+}
+
+/* 🎭 Page Transition Animation */
+.page-transition {
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔄 Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
 }
