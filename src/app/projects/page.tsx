@@ -1,50 +1,13 @@
-import { getProfile, getProjects } from "@/sanity/sanity.query";
-import { Profile, Project } from "@/types";
+import { ProjectsGrid } from "@/components/projects-grid"
+import { ProjectsHeader } from "@/components/projects-header"
 
-export default async function Page() {
-  const profile: Profile = await getProfile();
-  console.log(2, profile.fullBio);
-  const projects: Project[] = await getProjects();
-  console.log(1, projects);
+export default function ProjectsPage() {
   return (
-    <div>
-      Projects enter here
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-      <h1>Projects Page</h1>
-      <p>This is the projects page, where you can see all my projects.</p>
-      <p>Click on a project to learn more about it.</p>
-    </div>
-  );
+    <main className="pt-24 pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ProjectsHeader />
+        <ProjectsGrid />
+      </div>
+    </main>
+  )
 }

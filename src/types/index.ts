@@ -1,62 +1,34 @@
-import { PortableTextBlock } from "@sanity/types";
-
-// 🌟 Profile Schema Type
-export interface Profile {
-  _id: string;
-  fullName: string;
-  headline: string;
-  profileImage: {
-    asset: {
-      url: string;
-    };
-    alt: string;
-  };
-  shortBio: string;
-  email: string;
-  location: string;
-  fullBio: PortableTextBlock[];
-  resumeURL: string;
-}
-
-// 🌟 Job Schema Type
-export interface Job {
-  _id: string;
-  company: string;
-  position: string;
-  startDate: string;
-  endDate?: string; // Optional for ongoing jobs
-  description: PortableTextBlock[];
-}
-
-// 🌟 Blog Schema Type
-export interface Blog {
-  _id: string;
-  title: string;
-  slug: string;
-  publishedAt: string;
-  content: PortableTextBlock[];
-  author: {
-    name: string;
-    image: {
-      asset: {
-        url: string;
-      };
-    };
-  };
-}
-
-// 🌟 Project Schema Type
 export interface Project {
   _id: string;
   title: string;
-  slug: string;
-  description: PortableTextBlock[];
+  slug: { current: string };
+  description: string;
+  image: any;
   technologies: string[];
-  mainImage: {
-    asset: {
-      url: string;
-    };
-  };
   githubUrl?: string;
   liveUrl?: string;
+  featured: boolean;
+  publishedAt: string;
+}
+
+export interface Profile {
+  _id: string;
+  name: string;
+  title: string;
+  bio: string;
+  image: any;
+  email: string;
+  resume: any;
+  socialLinks: {
+    github?: string;
+    linkedin?: string;
+    twitter?: string;
+  };
+}
+
+export interface Skill {
+  _id: string;
+  name: string;
+  category: string;
+  level: number;
 }
