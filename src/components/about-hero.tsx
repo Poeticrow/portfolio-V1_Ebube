@@ -55,11 +55,16 @@ export function AboutHero() {
           bio,
           image,
           email,
-          resume,
+         resume {
+    asset-> {
+      _id,
+      url
+    }
+  },
           socialLinks
         }`;
         const data = await client.fetch(query);
-        console.log(data);
+        // console.log(data);
         setProfile(data);
       } catch (error) {
         console.error('Error fetching profile:', error);
@@ -159,7 +164,9 @@ export function AboutHero() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button className="group">
                 <Download className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                Download Resume
+                <a href={profile.resume.asset.url} download target="_blank">
+                  Download Resume
+                </a>
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

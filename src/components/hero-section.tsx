@@ -62,7 +62,7 @@ export function HeroSection() {
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance"
           variants={itemVariants}
         >
-          Hi, I'm <span className="text-accent">Ebube Ibifuro Nwanze</span>
+          Hi, I&apos;m <span className="text-accent">Ebube Ibifuro Nwanze</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -126,7 +126,7 @@ export function HeroSection() {
               label: 'LinkedIn',
             },
             { href: 'ebubenwanze@gmail.com', icon: Mail, label: 'Email' },
-          ].map((social, index) => (
+          ].map((social) => (
             <motion.div
               key={social.label}
               variants={socialVariants}
