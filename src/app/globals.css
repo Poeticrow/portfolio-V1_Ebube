@@ -1,135 +1,224 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
 
-/* 🎨 Theme Variables */
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --bg-color: theme("colors.primary.50");
-  --text-color: theme("colors.primary.900");
-  --primary-color: theme("colors.primary.500");
-  --accent-color: theme("colors.accent.500");
+  /* Updated color tokens to match minimalist portfolio design brief */
+  --background: oklch(1 0 0); /* #ffffff - Clean white background */
+  --foreground: oklch(0.205 0 0); /* #1f2937 - Main text color */
+  --card: oklch(0.97 0 0); /* #f1f5f9 - Background for project cards */
+  --card-foreground: oklch(0.205 0 0); /* #1f2937 - Text color for project cards */
+  --popover: oklch(1 0 0); /* #ffffff - Background for popovers */
+  --popover-foreground: oklch(0.205 0 0); /* #1f2937 - Text color for popovers */
+  --primary: oklch(0.205 0 0); /* #1f2937 - Main navigation and header text */
+  --primary-foreground: oklch(1 0 0); /* #ffffff - Header text on dark background */
+  --secondary: oklch(0.556 0 0); /* #6b7280 - Secondary text color */
+  --secondary-foreground: oklch(1 0 0); /* #ffffff - Text over secondary backgrounds */
+  --muted: oklch(0.97 0 0); /* #f1f5f9 - Background for muted sections */
+  --muted-foreground: oklch(0.556 0 0); /* #6b7280 - Text color for muted sections */
+  --accent: oklch(0.646 0.222 280.116); /* #8b5cf6 - Links and interactive elements */
+  --accent-foreground: oklch(1 0 0); /* #ffffff - Text on accent backgrounds */
+  --destructive: oklch(0.577 0.245 27.325); /* #ea580c - Error messages */
+  --destructive-foreground: oklch(1 0 0); /* #ffffff - Text on destructive backgrounds */
+  --border: oklch(0.922 0 0); /* #e5e7eb - Borders for cards and sections */
+  --input: oklch(1 0 0); /* #ffffff - Input fields background */
+  --ring: oklch(0.646 0.222 280.116 / 0.3); /* Focus ring color with opacity */
+  --chart-1: oklch(0.646 0.222 280.116); /* #8b5cf6 */
+  --chart-2: oklch(0.6 0.118 184.704); /* #059669 */
+  --chart-3: oklch(0.577 0.245 27.325); /* #ea580c */
+  --chart-4: oklch(0.205 0 0); /* #1f2937 */
+  --chart-5: oklch(0.556 0 0); /* #6b7280 */
+  --radius: 0.5rem; /* Corner rounding for cards and buttons */
+  --sidebar: oklch(1 0 0); /* #ffffff - Sidebar background */
+  --sidebar-foreground: oklch(0.205 0 0); /* #1f2937 - Sidebar text color */
+  --sidebar-primary: oklch(0.646 0.222 280.116); /* #8b5cf6 - Primary sidebar accent */
+  --sidebar-primary-foreground: oklch(1 0 0); /* #ffffff - Text on primary sidebar background */
+  --sidebar-accent: oklch(0.97 0 0); /* #f1f5f9 - Sidebar accent background */
+  --sidebar-accent-foreground: oklch(0.205 0 0); /* #1f2937 - Text on sidebar accent */
+  --sidebar-border: oklch(0.922 0 0); /* #e5e7eb - Sidebar border color */
+  --sidebar-ring: oklch(0.646 0.222 280.116 / 0.3); /* Focus ring for sidebar */
 }
 
 .dark {
-  --bg-color: theme("colors.primary.950");
-  --text-color: theme("colors.primary.100");
-  --primary-color: theme("colors.primary.300");
-  --accent-color: theme("colors.accent.300");
+  /* Updated dark mode tokens for professional portfolio look */
+  --background: oklch(0.145 0 0); /* Dark background */
+  --foreground: oklch(0.985 0 0); /* Light text */
+  --card: oklch(0.205 0 0); /* Darker cards */
+  --card-foreground: oklch(0.985 0 0); /* Light text on cards */
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.646 0.222 280.116); /* Keep accent consistent */
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.646 0.222 280.116 / 0.3);
+  --chart-1: oklch(0.646 0.222 280.116);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.646 0.222 280.116);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.646 0.222 280.116 / 0.3);
 }
 
-/* 🎭 Apply Theme Colors */
-body {
-  @apply bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300;
-  font-family: var(--font-playfair), serif;
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* 🎨 Buttons */
-.button {
-  @apply px-4 py-2 rounded-lg font-medium transition-all duration-300;
-}
-
-.button-primary {
-  @apply bg-[var(--primary-color)] text-white hover:bg-primary-600 dark:hover:bg-primary-400;
-}
-
-.button-accent {
-  @apply bg-[var(--accent-color)] text-white hover:bg-accent-600 dark:hover:bg-accent-400;
-}
-
-/* 🌗 Dark Mode Toggle */
-.toggle-container {
-  @apply flex items-center justify-center p-2;
-}
-
-.toggle-switch {
-  @apply w-10 h-5 bg-gray-300 dark:bg-gray-700 rounded-full relative cursor-pointer transition-all;
-}
-
-.toggle-circle {
-  @apply w-4 h-4 bg-white dark:bg-gray-300 rounded-full absolute top-1 left-1 transition-all;
-}
-
-.dark .toggle-circle {
-  @apply translate-x-5;
-}
-
-/* 🔲 Background Geometric Animation */
-.animated-bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: -10; /* Puts it behind all content */
-}
-
-/* 🛑 Ensure Animated Hexagons Respect Theme Colors */
-.hexagon-pattern polygon {
-  stroke: var(--primary-color);
-  transition: stroke 0.3s ease-in-out;
-}
-
-/* 🌀 Animated Background Ripple Effect */
-@keyframes ripple {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.8;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.3;
+  body {
+    @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  .hover-tilt {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-tilt:hover {
+    transform: rotate(2deg) scale(1.02);
+  }
+
+  .hover-bounce:hover {
+    animation: bounce 0.6s ease-in-out;
+  }
+
+  .hover-wiggle:hover {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  .hover-glow {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .hover-shake:hover {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .cursor-trail {
+    pointer-events: none;
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%);
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+  }
+}
+
+@keyframes wiggle {
+  0%,
   100% {
-    transform: scale(0.9);
-    opacity: 0.8;
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
   }
 }
 
-.animated-hexagon {
-  animation: ripple 2.5s infinite ease-in-out;
-}
-
-/* 📱 Responsive Typography */
-h1 {
-  @apply text-4xl md:text-5xl font-bold;
-}
-
-h2 {
-  @apply text-3xl md:text-4xl font-semibold;
-}
-
-p {
-  @apply text-lg md:text-xl;
-}
-
-/* 🎭 Page Transition Animation */
-.page-transition {
-  animation: fadeInUp 0.5s ease-in-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
   }
-  to {
-    opacity: 1;
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
     transform: translateY(0);
   }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-/* 🔄 Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
+@layer utilities {
+  .transition-quirky {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 4px;
-}
+  .hover-squeeze:hover {
+    transform: scale(0.95);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-color);
+  .hover-rotate:hover {
+    transform: rotate(5deg);
+  }
 }

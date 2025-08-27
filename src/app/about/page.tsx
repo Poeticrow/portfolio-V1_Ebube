@@ -1,41 +1,15 @@
-import { Metadata } from "next";
+import { AboutHero } from "@/components/about-hero"
+import { SkillsSection } from "@/components/skills-section"
+import { ExperienceSection } from "@/components/experience-section"
 
-export const metadata: Metadata = {
-  title: "About | Nwanze Ebube Nwanze",
-  //   metadataBase: new URL("https://www.delightsheriff.tech/about"),
-  description:
-    "Learn more about my skills, experience and technical background",
-  openGraph: {
-    title: "About | Nwanze Ebube Ibifuro",
-    // url: "https://www.delightsheriff.tech/about",
-    description:
-      "Learn more about my skills, experience and technical background",
-    images:
-      "https://res.cloudinary.com/dhlbkd9i9/image/upload/v1735282721/portfolio/qgvvho0sgskbtsumfytf.png",
-  },
-};
-
-export default function Page() {
+export default function AboutPage() {
   return (
-    <div>
-      About Info enter here
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-      <p>This is the about page</p>
-    </div>
-  );
+    <main className="pt-24 pb-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AboutHero />
+        <SkillsSection />
+        <ExperienceSection />
+      </div>
+    </main>
+  )
 }

@@ -1,9 +1,9 @@
-import PageWrapper from "@/components/PageWrapper";
+import { HeroSection } from "@/components/hero-section"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <PageWrapper>
-      <h1 className="text-3xl font-bold">Welcome to My Portfolio</h1>
-    </PageWrapper>
-  );
+    <main className="pt-16">
+      <HeroSection />
+    </main>
+  )
 }
