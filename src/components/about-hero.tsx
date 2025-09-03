@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Download, MapPin } from 'lucide-react';
 import { client, urlFor, type Profile } from '@/lib/sanity';
-import { motion } from 'framer-motion';
+import { easeOut, motion } from 'framer-motion';
 
 export function AboutHero() {
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -28,7 +28,7 @@ export function AboutHero() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: easeOut,
       },
     },
   };
@@ -40,7 +40,8 @@ export function AboutHero() {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: 'easeOut',
+
+        ease: easeOut,
       },
     },
   };
@@ -147,7 +148,7 @@ export function AboutHero() {
             variants={itemVariants}
           >
             <MapPin className="w-4 h-4" />
-            <span>San Francisco, CA</span>
+            <span>Port Harcourt, Rivers State</span>
           </motion.div>
 
           <motion.p

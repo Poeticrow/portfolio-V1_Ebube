@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { easeOut, motion } from 'framer-motion';
 
 export function HeroSection() {
   const containerVariants = {
@@ -25,7 +25,7 @@ export function HeroSection() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: easeOut,
       },
     },
   };
@@ -37,7 +37,7 @@ export function HeroSection() {
       scale: 1,
       transition: {
         duration: 0.4,
-        ease: 'easeOut',
+        ease: easeOut,
       },
     },
   };
@@ -116,12 +116,12 @@ export function HeroSection() {
         >
           {[
             {
-              href: 'https://github.com/Poeticrowhttps://github.com/Poeticrow',
+              href: 'https://github.com/Poeticrow',
               icon: Github,
               label: 'GitHub',
             },
             {
-              href: 'https://www.linkedin.com/in/ebube-nwanze-428641259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+              href: 'https://www.linkedin.com/in/ebube-nwanze-428641259',
               icon: Linkedin,
               label: 'LinkedIn',
             },

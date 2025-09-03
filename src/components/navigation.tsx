@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, easeInOut } from 'framer-motion';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 export function Navigation() {
@@ -23,7 +23,7 @@ export function Navigation() {
       height: 0,
       transition: {
         duration: 0.3,
-        ease: 'easeInOut',
+        ease: easeInOut,
       },
     },
     visible: {
@@ -31,7 +31,7 @@ export function Navigation() {
       height: 'auto',
       transition: {
         duration: 0.3,
-        ease: 'easeInOut',
+        ease: easeInOut,
         staggerChildren: 0.1,
       },
     },
