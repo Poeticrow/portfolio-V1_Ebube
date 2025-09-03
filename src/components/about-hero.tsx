@@ -1,15 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Download, MapPin } from 'lucide-react';
-import { client, urlFor, type Profile } from '@/lib/sanity';
+import { urlFor, type Profile } from '@/lib/sanity';
 import { easeOut, motion } from 'framer-motion';
+import { useProfile } from '@/hooks/use-profile';
 
 export function AboutHero() {
-  const [profile, setProfile] = useState<Profile | null>(null);
-
+  // const [profile, setProfile] = useState<Profile | null>(null);
+  const profile = useProfile();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -45,37 +45,6 @@ export function AboutHero() {
       },
     },
   };
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const query = `*[_type == "profiles"][0] {
-          _id,
-          name,
-          title,
-          bio,
-          image,
-          email,
-         resume {
-    asset-> {
-      _id,
-      url
-    }
-  },
-          socialLinks
-        }`;
-        const data = await client.fetch(query);
-        // console.log(data);
-        setProfile(data);
-      } catch (error) {
-        console.error('Error fetching profile:', error);
-        // Fallback to mock data
-        setProfile(mockProfile);
-      }
-    };
-
-    fetchProfile();
-  }, []);
 
   if (!profile) {
     return (
@@ -163,12 +132,18 @@ export function AboutHero() {
             variants={itemVariants}
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="group">
-                <Download className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                <a href={profile.resume.asset.url} download target="_blank">
-                  Download Resume
-                </a>
-              </Button>
+              {profile.resume?.asset?.url && (
+                <Button className="group">
+                  <Download className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                  <a
+                    href={profile?.resume?.asset?.url}
+                    download
+                    target="_blank"
+                  >
+                    Download Resume
+                  </a>
+                </Button>
+              )}
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="outline" asChild>

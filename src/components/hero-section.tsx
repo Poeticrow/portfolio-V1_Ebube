@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { easeOut, motion } from 'framer-motion';
+import { useProfile } from '@/hooks/use-profile';
 
 export function HeroSection() {
   const containerVariants = {
@@ -42,7 +43,9 @@ export function HeroSection() {
     },
   };
 
-  return (
+  const profile = useProfile();
+
+  return profile ? (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <motion.div
         className="max-w-4xl mx-auto text-center"
@@ -98,14 +101,18 @@ export function HeroSection() {
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              variant="outline"
-              size="lg"
-              className="group bg-transparent"
-            >
-              <Download className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-              Download Resume
-            </Button>
+            {profile.resume?.asset?.url && (
+              <Button
+                variant="outline"
+                size="lg"
+                className="group bg-transparent"
+              >
+                <Download className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                <a href={profile.resume.asset.url} download target="_blank">
+                  Download Resume
+                </a>
+              </Button>
+            )}
           </motion.div>
         </motion.div>
 
@@ -171,5 +178,7 @@ export function HeroSection() {
         </motion.div>
       </motion.div>
     </section>
+  ) : (
+    <p>Loading...</p>
   );
 }
